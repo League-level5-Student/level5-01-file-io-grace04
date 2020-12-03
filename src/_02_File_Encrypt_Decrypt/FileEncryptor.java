@@ -1,5 +1,12 @@
 package _02_File_Encrypt_Decrypt;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 public class FileEncryptor {
 	/*
 	 * Encryption is the process of encoding a message or information
@@ -20,4 +27,20 @@ public class FileEncryptor {
 	 * Create a program that takes a messager.
 	 * Use any key you want (1 - 25) to shift each letter in the users input and save the final result to a file.
 	 */
+	
+	public static void main(String[] args) throws IOException {
+		String ans = JOptionPane.showInputDialog("message");
+		FileWriter out = new FileWriter("file.txt");
+		out.write(encrypt(ans));
+		out.close();
+	}
+	
+	static String encrypt(String s) {
+		String encry = "";
+		for(int i=0;i<s.length();i++) {
+			char c = (char) (s.charAt(i)+4);
+			encry += c;
+		}	
+		return encry;
+	}
 }
